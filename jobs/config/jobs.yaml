@@ -1,0 +1,43 @@
+SEED_JOBS:
+  - name: "seedjob"
+    description: "Seed all jobs"
+    log_rotation:
+      artifact_days_to_keep: 4
+      artifact_num_to_Keep: 50
+      days_to_keep: 4
+      num_to_keep: 50
+    scm_url: "git@github.com:NIXKnight/Jenkins-Job-DSL-Demo.git"
+    scm_credentials: "GitHubCredentials"
+    scm_branch: "master"
+    pipeline_path: 'jobs/src/main/pipelines/SeedJob.Jenkinsfile'
+
+PIPELINES:
+  - name: "Ping-Server"
+    description: "Ping as root server."
+    log_rotation:
+      artifact_days_to_keep: 4
+      artifact_num_to_Keep: 50
+      days_to_keep: 4
+      num_to_keep: 50
+    scm_url: "git@github.com:NIXKnight/Jenkins-Job-DSL-Demo.git"
+    scm_credentials: "GitHubCredentials"
+    scm_branch: "master"
+    pipeline_path: 'jobs/src/main/pipelines/pingJob.Jenkinsfile'
+    parameters:
+      - { name: 'PING_SERVER', default_value: '8.8.8.8', description: 'Server address.', type: stringParam }
+      - { name: 'PING_COUNT', default_value: '3', description: 'How many ping packets to send?', type: stringParam }
+
+  - name: "Ping-As-Root-Server"
+    description: "Ping as root server."
+    log_rotation:
+      artifact_days_to_keep: 4
+      artifact_num_to_Keep: 50
+      days_to_keep: 4
+      num_to_keep: 50
+    scm_url: "git@github.com:NIXKnight/Jenkins-Job-DSL-Demo.git"
+    scm_credentials: "GitHubCredentials"
+    scm_branch: "master"
+    pipeline_path: 'jobs/src/main/pipelines/pingAsRootJob.Jenkinsfile'
+    parameters:
+      - { name: 'PING_SERVER', default_value: '8.8.8.8', description: 'Server address.', type: stringParam }
+      - { name: 'PING_COUNT', default_value: '3', description: 'How many ping packets to send?', type: stringParam }
